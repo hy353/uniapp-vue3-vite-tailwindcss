@@ -1,4 +1,4 @@
-# 这是一个uniapp的vue3 vite ts 基础模板  集成tailwindcss
+# 这是一个uniapp的vue3 vite ts 基础模板  集成tailwindcss、uni-ui
 
 
 > `npm install`  
@@ -16,3 +16,7 @@
     <text class="material-icons outlined">
         account_circle
     </text>
+    
+    
+## 手动更新uniapp版本
+    npx @dcloudio/uvm alpha
