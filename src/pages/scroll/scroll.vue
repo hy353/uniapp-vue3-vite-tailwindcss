@@ -1,6 +1,7 @@
 <template>
   <view>
     <z-paging ref="paging" v-model="dataList" @query="queryList">
+      <!-- {{ counter.count }} -->
       <view class="item" v-for="(item, index) in dataList" :key="index">
         <view class="item-title">{{ item.title }}</view>
       </view>
@@ -11,11 +12,13 @@
 <script setup lang="ts">
 import { ref, inject, toRef, unref } from 'vue';
 import { onShow, onHide, onLoad, onUnload, onShareAppMessage } from '@dcloudio/uni-app'
-import { RequestInterface } from '../../typings/request';
+import { RequestInterface } from '@/typings/request';
+// import { useCounterStore } from '@/stores/user';
 const $http: RequestInterface = inject("$http") as RequestInterface;
 const paging: any = ref(null)
 const id = ref(0)
 let dataList = ref([])
+// const counter = useCounterStore()
 onLoad((options) => {
   console.log('page query', options)
   if (options.id) {
@@ -41,7 +44,7 @@ const queryList = (pageNo: any, pageSize: any) => {
   console.log(unref(id));
   const promises = [
     $http.get({
-      url: '/user',
+      url: '/api/user',
     }),
     $http.get({
       url: '/use2r',

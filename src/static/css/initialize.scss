@@ -1,0 +1,17 @@
+checkbox.round .wx-checkbox-input,
+checkbox.round .uni-checkbox-input {
+  @apply rounded-[50%] border-black;
+}
+
+checkbox.cyan[checked] .wx-checkbox-input,
+checkbox.cyan.checked .uni-checkbox-input {
+  @apply bg-cyan-500 border-cyan-500 text-white;
+}
+
+button {
+  @apply p-0 m-0 rounded-none leading-tight pt-3 pb-3 text-base font-normal tracking-wide bg-cyan-500;
+}
+
+button::after {
+  @apply border-none;
+}
