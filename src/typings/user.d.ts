@@ -3,7 +3,7 @@ interface UserInterface {
   name: string;
   mobile: string;
   email: string;
-  avatarUrl: string;
+  avatar: string;
 }
 
 export { UserInterface };

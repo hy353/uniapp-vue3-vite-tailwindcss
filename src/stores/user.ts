@@ -1,10 +1,12 @@
 import { defineStore } from "pinia";
-import { ref, computed, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import { UserInterface } from "@/typings/user";
 
 export const useUserStore = defineStore("user", () => {
   const token = ref("");
   const user = ref({} as UserInterface);
+
+  const isLoggedIn = computed(() => !!token.value && !!user.value.mobile);
 
   watch(token, (newValue, oldValue) => {
     console.log("token changed", newValue, oldValue);
@@ -40,10 +42,6 @@ export const useUserStore = defineStore("user", () => {
     user.value = u;
   }
 
-  function isLogined() {
-    return !!(token.value && user.value.mobile);
-  }
-
   function initData() {
     uni.getStorage({
       key: "authorization_token_key",
@@ -62,9 +60,9 @@ export const useUserStore = defineStore("user", () => {
   return {
     token,
     user,
+    isLoggedIn,
     setToken,
     setUser,
     initData,
-    isLogined,
   };
 });
