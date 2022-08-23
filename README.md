@@ -31,4 +31,4 @@
     
     
 ## 手动更新uniapp版本
-    npx @dcloudio/uvm alpha
+    npx @dcloudio/uvm
