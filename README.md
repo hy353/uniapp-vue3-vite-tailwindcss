@@ -1,4 +1,4 @@
-# 这是一个uniapp的vue3 vite ts 基础模板  集成tailwindcss、uni-ui、pinia、sass
+# 这是一个uniapp的vue3 vite ts 基础模板  集成tailwindcss、uni-ui、pinia、sass、uview-plus
 
 
 > `npm install`  
@@ -10,25 +10,30 @@
 
 ## Material Icons 字体图标
 
-> 详见：https://fonts.google.com/icons?selected=Material+Icons&icon.style=Filled
+> 图标库：[https://fonts.google.com/icons?selected=Material+Icons&icon.style=Filled]
 
-#### 用法
+### 用法
+
     <text class="material-icons outlined">
         account_circle
     </text>
-    
+
 ## pinia
 
-> 详见：https://pinia.vuejs.org/introduction.html
-    
+> 文档：[https://pinia.vuejs.org/introduction.html]
+
 ## @tailwindcss/line-clamp
 
-> 详见：https://github.com/tailwindlabs/tailwindcss-line-clamp
+> 文档：[https://github.com/tailwindlabs/tailwindcss-line-clamp]
 
 ## z-paging
 
-> 详见：https://github.com/SmileZXLee/uni-z-paging
-    
-    
+> 文档：[https://github.com/SmileZXLee/uni-z-paging]
+
+## uview-plus
+
+> 官网: [https://uiadmin.net/uview-plus/]
+
 ## 手动更新uniapp版本
+
     npx @dcloudio/uvm

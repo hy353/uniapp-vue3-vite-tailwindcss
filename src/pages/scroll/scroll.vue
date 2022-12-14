@@ -10,16 +10,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, inject, toRef, unref } from 'vue';
+import { ref, inject, toRef, unref, Ref } from 'vue';
 import { onShow, onHide, onLoad, onUnload, onShareAppMessage } from '@dcloudio/uni-app'
 import { RequestInterface } from '@/typings/request';
 // import { useCounterStore } from '@/stores/user';
 const $http: RequestInterface = inject("$http") as RequestInterface;
 const paging: any = ref(null)
 const id = ref(0)
-let dataList = ref([])
+let dataList:Ref<Array<any>> = ref([])
 // const counter = useCounterStore()
-onLoad((options) => {
+onLoad((options:any) => {
   console.log('page query', options)
   if (options.id) {
     id.value = parseInt(options.id)

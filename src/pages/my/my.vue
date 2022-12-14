@@ -10,7 +10,7 @@
         <text class="" v-if="!isLoggedIn">登录/注册</text>
         <text v-else>{{ user.name ? user.name : '未知昵称' }}</text>
       </view>
-    </view>
+    </view><u-loading-page :loading="true"></u-loading-page>
   </view>
 </template>
 
@@ -19,13 +19,17 @@ import { useUserStore } from '@/stores/user'
 import useHttpRepositories from '@/composables/useHttpRepositories';
 import { storeToRefs } from "pinia";
 import { onShow, onHide, onLoad, onUnload, onShareAppMessage } from '@dcloudio/uni-app'
+import { ref } from 'vue';
 const userStore = useUserStore();
 const { user, isLoggedIn } = storeToRefs(userStore);
 const { $http } = useHttpRepositories()
+const show = ref(false);
 onShow(() => {
   console.log('page show')
 })
 function goLoginHandle(e: any) {
+  show.value = true;
+  return;
   if (!isLoggedIn.value) {
     uni.navigateTo({
       url: '/pages/login/login'

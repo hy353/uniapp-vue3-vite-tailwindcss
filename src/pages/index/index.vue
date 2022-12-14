@@ -25,6 +25,11 @@
         account_circle
       </text>
     </uni-card>
+    <view v-if="show">
+      1111
+    </view>
+
+    <u-modal :show="show" :title="title" content='11111'></u-modal>
     <test :list="[1, 2, 3, 4]">
       <template v-slot="{ item, index, twice }">
         <button @click="componentClick" :data-item="item" v-if="showArr[index]">
@@ -42,12 +47,22 @@ import { storeToRefs } from 'pinia';
 import test from "../../components/test.vue";
 import useHttpRepositories from '@/composables/useHttpRepositories';
 const title = ref("Hello123");
-const showArr = ref([true, false, false, true]);
+const showArr = ref([true, false, false, false]);
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 const { $http } = useHttpRepositories()
+const show = ref(false);
 const componentClick = (e: any) => {
-  user.value.name = '11';
+  // user.value.name = '11';
+  // title.value = '111';
+  // show.value = true;
+  showArr.value = [true, true, true, true];
+  uni.$u.route({
+    url: 'pages/scroll/scroll',
+    params: {
+      name: 'lisa'
+    }
+  })
 };
 </script>
 
