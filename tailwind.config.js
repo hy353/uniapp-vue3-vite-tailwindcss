@@ -1,11 +1,11 @@
 module.exports = {
-  content: ["./index.html", "./src/**/*.{html,js,ts,jsx,tsx,vue}"],
+  content: ['./index.html', './src/**/*.{html,js,ts,jsx,tsx,vue}'],
   theme: {
-    extend: {},
+    extend: {}
   },
-  plugins: [require("@tailwindcss/line-clamp")],
+  plugins: [],
   corePlugins: {
-    preflight: false,
+    preflight: false
   },
-  darkMode: "class",
-};
+  darkMode: 'class'
+}

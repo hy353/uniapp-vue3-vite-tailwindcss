@@ -1,31 +1,43 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 import { resolve } from "path";
-import uni from '@dcloudio/vite-plugin-uni';
+import uni from "@dcloudio/vite-plugin-uni";
+import AutoImport from 'unplugin-auto-import/vite'
 
-const isH5 = process.env.UNI_PLATFORM === 'h5';
+const isH5 = process.env.UNI_PLATFORM === "h5";
+const isApp = process.env.UNI_PLATFORM === "app";
+const WeappTailwindcssDisabled = isH5 || isApp;
 
-import vwt from 'weapp-tailwindcss-webpack-plugin/vite';
-import postcssWeappTailwindcssRename from 'weapp-tailwindcss-webpack-plugin/postcss';
+import { UnifiedViteWeappTailwindcssPlugin as uvtw } from "weapp-tailwindcss/vite";
 
 // vite 插件配置
-const vitePlugins = [uni()];
-// postcss 插件配置
-const postcssPlugins = [require('autoprefixer')(), require('tailwindcss')()];
-if (!isH5) {
-  vitePlugins.push(vwt());
+const vitePlugins = [
+  uni(),
+  uvtw({
+    disabled: WeappTailwindcssDisabled,
+  }),
+  AutoImport({
+    imports: ["vue", "uni-app", "pinia"],
+    dts: "./src/auto-imports.d.ts",
+    eslintrc: {
+      enabled: true,
+    },
+  }),
+];
 
+// postcss 插件配置
+const postcssPlugins = [require("autoprefixer")(), require("tailwindcss")()];
+if (!WeappTailwindcssDisabled) {
   postcssPlugins.push(
-    require('postcss-rem-to-responsive-pixel')({
+    require("postcss-rem-to-responsive-pixel")({
       rootValue: 32,
-      propList: ['*'],
-      transformUnit: 'rpx'
+      propList: ["*"],
+      transformUnit: "rpx",
     })
   );
-  postcssPlugins.push(postcssWeappTailwindcssRename());
 }
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: vitePlugins,  
+  plugins: vitePlugins,
   resolve: {
     alias: {
       "@": resolve(__dirname, "/src"),
@@ -34,22 +46,7 @@ export default defineConfig({
   // 假如 postcss.config.js 不起作用，请使用内联 postcss Latset
   css: {
     postcss: {
-      plugins: postcssPlugins
-    }
+      plugins: postcssPlugins,
+    },
   }
-  // 假如 postcss.config.js 不起作用，请使用内联 postcss
-  // css: {
-  //   postcss: {
-  //     plugins: [
-  //       require('autoprefixer')(),
-  //       require('tailwindcss')(),
-  //       require('postcss-rem-to-responsive-pixel')({
-  //         rootValue: 32,
-  //         propList: ['*'],
-  //         transformUnit: 'rpx'
-  //       }),
-  //       postcssWeappTailwindcssRename()
-  //     ]
-  //   }
-  // }
 });
